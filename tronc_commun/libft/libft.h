@@ -6,7 +6,7 @@
 /*   By: rlevilla <rlevilla@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 22:25:41 by rlevilla          #+#    #+#             */
-/*   Updated: 2022/11/04 03:20:47 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/04 03:58:03 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *string, int c);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(const char *s1, const char *s2);
-char	*ft_strlcat(char *dest, const char *src, size_t dstsize);
+size_t	ft_strlcat(char *dest, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *str);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
@@ -58,8 +58,8 @@ char	*ft_strtrim(const char *s1, const char *set);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 int		ft_tolower(int ch);
 int		ft_toupper(int ch);
-void	ft_lstadd_back(t_list **alst, t_list *new);
-void	ft_lstadd_front(t_list **alst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
