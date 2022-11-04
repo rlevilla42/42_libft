@@ -6,7 +6,7 @@
 /*   By: rlevilla <rlevilla@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 00:21:29 by rlevilla          #+#    #+#             */
-/*   Updated: 2022/11/02 00:49:16 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/04 22:54:25 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_revstr(char *str)
 	}
 }
 
-int	ft_uitoa_base(unsigned int n)
+int	ft_uitoa_base(unsigned long long int n)
 {
 	unsigned int	r;
 	int				i;
@@ -71,7 +71,7 @@ int	ft_uitoa_base(unsigned int n)
 	r = 0;
 	i = -1;
 	str = (char *)malloc(sizeof(char) * 25);
-	while (n >= 16)
+	while (n > 0)
 	{
 		r = n % 16;
 		if (r < 10 && r >= 0)
@@ -93,11 +93,45 @@ int	ft_uitoa_base(unsigned int n)
 int main(void)
 {
 	//unsigned int	n = 4294967295;
-	unsigned int	n = 4294967294;
-	int	z = ft_uitoa_base(n);
+	// check ascii 
 
-	printf("printf output this:%x\n", n);
-	printf("ft_uitoa output this:\n");
-	//ft_uitoa_base(n);
-	printf("%d\n", z);
+	printf("\tprintf output this:\t%lx\n", 4294967295);
+	printf("\tft_uitoa return this:%d\n\n", ft_uitoa_base(4294967295));
+	
+	printf("\tprintf output this:\t%x\n", 123456789);
+	printf("\tft_uitoa return this:%d\n\n", ft_uitoa_base(123456789));
+	
+	//unsigned int	n = 12345678;
+	printf("\tprintf output this:\t%x\n", 98765432);
+	printf("\tft_uitoa return this:%d\n\n", ft_uitoa_base(98765432));
+	
+	printf("\tprintf output this:\t%x\n", 12345678);
+	printf("\tft_uitoa return this:%d\n\n", ft_uitoa_base(12345678));
+	//unsigned int	n = 1234567;
+	printf("\tprintf output this:\t%x\n", 17772835);
+	printf("\tft_uitoa return this:%d\n\n", ft_uitoa_base(17772835));
+	
+	//unsigned int	n = 123456;
+	printf("\tprintf output this:\t%x\n", 666667);
+	printf("\tft_uitoa return this:%d\n\n", ft_uitoa_base(666667));
+	
+	//unsigned int	n = 12345;
+	printf("\tprintf output this:\t%x\n", 91422);
+	printf("\tft_uitoa return this:%d\n\n", ft_uitoa_base(91422));
+	
+	//unsigned int	n = 1234;
+	printf("\tprintf output this:\t%x\n", 9462);
+	printf("\tft_uitoa return this:%d\n\n", ft_uitoa_base(9462));
+	
+	//unsigned int	n = 123;
+	printf("\tprintf output this:\t%x\n", 374);
+	printf("\tft_uitoa return this:%d\n\n", ft_uitoa_base(374));
+	
+	//unsigned int	n = 12;
+	printf("\tprintf output this:\t%x\n", 12);
+	printf("\tft_uitoa return this:%d\n\n", ft_uitoa_base(12));
+	
+	//unsigned int	n = 1;
+	printf("\tprintf output this:\t%x\n", 1);
+	printf("\tft_uitoa return this:%d\n\n", ft_uitoa_base(1));
 }
