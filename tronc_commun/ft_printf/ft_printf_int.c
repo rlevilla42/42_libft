@@ -6,7 +6,7 @@
 /*   By: rlevilla <rlevilla@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:16:08 by rlevilla          #+#    #+#             */
-/*   Updated: 2022/11/02 00:33:59 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/05 23:39:36 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,6 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-/*int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-*/
 int	ft_intlen(int n)
 {
 	int	count;
@@ -90,6 +78,11 @@ int	ft_itoa(int n)
 	}
 	ft_putstr(str);
 	return (ft_strlen(str));
+}
+
+int	ft_printf_int(int n)
+{
+	return (ft_itoa(n));
 }
 /*
 int	main(void)

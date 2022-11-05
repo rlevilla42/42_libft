@@ -6,7 +6,7 @@
 /*   By: rlevilla <rlevilla@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 23:54:43 by rlevilla          #+#    #+#             */
-/*   Updated: 2022/11/02 00:24:13 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/06 00:11:01 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-/*
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-*/
-int	ft_intlen(unsigned int n)
-{
-	int	count;
-
-	count = 0;
-	if (n < 0)
-	{
-		count++;
-		n = n * (-1);
-	}
-	while (n > 0)
-	{
-		n /= 10;
-		count++;
-	}
-	return (count);
-}
 
 void	ft_putchar(char c)
 {
@@ -68,10 +38,20 @@ int	ft_itoa(unsigned int n)
 	char	*str;
 	int		i;
 
-	str = (char *)malloc(sizeof(char) * 12);
+	str = (char *)malloc(sizeof(char) * 11);
 	i = ft_intlen(n);
+	if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return (11);
+	}
 	str[i] = '\0';
 	i--;
+	if (n < 0)
+	{
+		str[0] = '-';
+		n = n * (-1);
+	}
 	while (n > 0)
 	{
 		str[i] = (n % 10) + 48;
@@ -82,7 +62,7 @@ int	ft_itoa(unsigned int n)
 	return (ft_strlen(str));
 }
 
-int	ft_printf_int(int n)
+int	ft_printf_u(unsigned int n)
 {
 	return (ft_itoa(n));
 }

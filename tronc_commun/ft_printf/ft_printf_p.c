@@ -6,7 +6,7 @@
 /*   By: rlevilla <rlevilla@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 00:31:54 by rlevilla          #+#    #+#             */
-/*   Updated: 2022/11/03 01:52:13 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/05 23:56:19 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,6 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char	ft_dec_to_hex(unsigned int r)
-{
-	if (r == 10)
-		return ('a');
-	else if (r == 11)
-		return ('b');
-	else if (r == 12)
-		return ('c');
-	else if (r == 13)
-		return ('d');
-	else if (r == 14)
-		return ('e');
-	else if (r == 15)
-		return ('f');
-	return (0);
-}
-
 void	ft_revstr(char *str)
 {
 	int	i;
@@ -62,32 +45,33 @@ void	ft_revstr(char *str)
 	}
 }
 
-int	ft_uitoa_base(unsigned long long n)
+int	ft_itoa_base(unsigned long long int n, char *base)
 {
-	unsigned long long r;
 	int				i;
 	char			*str;
 
-	r = 0;
 	i = -1;
 	str = (char *)malloc(sizeof(char) * 25);
-	while (n >= 16)
+	while (n > 0)
 	{
-		r = n % 16;
-		if (r < 10 && r >= 0)
-			str[++i] = r + 48;
-		else
-			str[++i] = ft_dec_to_hex(r);
-		n = n / 16;
+		str[++i] = base[n % 16];
+		n /= 16;
 		if (n < 16)
 		{
-			str[++i] = n + 48;
+			str[++i] = base[n];
 			n = 0;
 		}
 	}
 	str[++i] = '\0';
 	ft_revstr(str);
 	return (ft_strlen(str));
+}
+
+int	ft_printf_p(unsigned long long int n, char *base)
+{
+	ft_putchar("0");
+	ft_putchar("X");
+	return (2 + (ft_itoa_base(n, base));
 }
 
 int main(void)
