@@ -6,7 +6,7 @@
 /*   By: raphaell <raphaellrlevilla@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 00:13:18 by raphaell          #+#    #+#             */
-/*   Updated: 2022/11/03 19:24:31 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/08 02:50:06 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,24 @@
 
 int	ft_memcmp(const void *str1, const void *str2, size_t n)
 {
-	size_t	i;
-	char	*ptrstr1;
-	char	*ptrstr2;
+	size_t			i;
+	unsigned char	*ptrstr1;
+	unsigned char	*ptrstr2;
 
 	i = 0;
 	if (n == 0)
 		return (0);
-	ptrstr1 = (char *)str1;
-	ptrstr2 = (char *)str2;
-	while (ptrstr1[i] == ptrstr2[i] && i < n)
+	ptrstr1 = (unsigned char *)str1;
+	ptrstr2 = (unsigned char *)str2;
+	while (i < n)
+	{
+		if (ptrstr1[i] != ptrstr2[i])
+		{
+			return (ptrstr1[i] - ptrstr2[i]);
+		}
 		i++;
-	return (ptrstr1[i] - ptrstr2[i]);
+	}
+	return (0);
 }
 /*
 int main(void)
@@ -60,6 +66,9 @@ int main(void)
 	char *str10 = "Yo petit con";
 	char *str11 = "Yo p9tit con";
 	printf("memcmp output this: %i\n", memcmp(str10, str11, 5));
-	printf("ft_memcmp output this: %i\n", ft_memcmp(str10, str11, 5));
-
+	printf("ft_memcmp output this: %i\n\n", ft_memcmp(str10, str11, 5));
+	printf("%d\n", memcmp("t\200", "t\0", 2));
+	printf("%d\n\n", ft_memcmp("t\200", "t\0", 2));
+	printf("%d\n", memcmp("abcdefghij", "abcdefgxyz", 7));
+	printf("%d\n\n", ft_memcmp("abcdefghij", "abcdefgxyz", 7));
 }*/

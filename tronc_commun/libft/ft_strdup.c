@@ -6,7 +6,7 @@
 /*   By: raphaell <raphaellrlevilla@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 00:13:18 by raphaell          #+#    #+#             */
-/*   Updated: 2022/11/04 02:00:51 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/08 03:10:16 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
@@ -24,24 +24,22 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s)
 {
 	int		i;
 	char	*buffer;
-	char	*str;
 
 	i = 0;
-	str = (char *)s1;
-	buffer = malloc(sizeof(*str) * (ft_strlen(str) + 1));
+	buffer = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (buffer == NULL)
 		return (NULL);
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 	{
-		buffer[i] = str[i];
+		buffer[i] = s[i];
 		i++;
 	}
 	buffer[i] = '\0';
-	return (str);
+	return (buffer);
 }
 /*
 int main(void)
