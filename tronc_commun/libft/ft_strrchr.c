@@ -6,7 +6,7 @@
 /*   By: raphaell <raphaellrlevilla@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 00:13:18 by raphaell          #+#    #+#             */
-/*   Updated: 2022/11/04 02:37:58 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/07 01:07:33 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,35 @@ char	*ft_strrchr(const char *string, int c)
 {
 	int		i;
 	int		j;
-	char	*str;
+	int		flag;
 	char	ch;
+	char	*str;
 
 	i = 0;
 	j = 0;
-	str = (char *)string;
+	flag = 0;
 	ch = (char)c;
+	str = (char *)string;
 	while (str[i] != '\0')
 	{
 		if (str[i] == ch)
 		{
 			j = i;
+			flag = 1;
 		}
 		i++;
 	}
-	if (j != 0)
-	{
+	if (flag == 1)
 		return (&str[j]);
-	}
-	else
-		return (NULL);
+	else if (c == 0)
+		return (&str[i]);
+	return (NULL);
 }
 /*
 int main(void)
 {
-	char	*str = "Salut petit fada chenzen aka freeze rael";
-	int	c = 116;
-	printf("%s\n", strrchr(str, c));
-	printf("%s\n", ft_strrchr(str, c));
+	printf("%s\n", strrchr("teste", 0));
+	printf("%s\n\n", ft_strrchr("teste", 0));
+	printf("%s\n", strrchr("xteste", 'x'));
+	printf("%s\n", ft_strrchr("xteste", 'x'));
 }*/

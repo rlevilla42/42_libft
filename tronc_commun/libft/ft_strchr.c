@@ -6,7 +6,7 @@
 /*   By: raphaell <raphaellrlevilla@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 00:13:18 by raphaell          #+#    #+#             */
-/*   Updated: 2022/11/04 01:51:29 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/07 18:03:48 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ char	*ft_strchr(const char *string, int c)
 	i = 0;
 	ch = (char)c;
 	str = (char *)string;
+	if (c == 0)
+	{
+		while (str[i] != '\0')
+			i++;
+		return (&str[i]);
+	}
 	while (str[i] != ch && str[i] != '\0')
 	{
 		i++;
@@ -34,8 +40,7 @@ char	*ft_strchr(const char *string, int c)
 /*
 int main(void)
 {
-	char *str = "Chenzen aka freeze rael";
-	int c = 121;
-	printf("%s\n", strchr(str, c));
-	printf("%s\n", ft_strchr(str, c));
+	printf("%s\n", ft_strchr("teste", '\0'));
+	printf("%s\n", strchr("teste", '\0'));
+
 }*/
