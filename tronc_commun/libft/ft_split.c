@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlevilla <rlevilla@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: rlevilla <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/06 17:59:53 by rlevilla          #+#    #+#             */
-/*   Updated: 2022/11/09 01:47:10 by rlevilla         ###   ########.fr       */
+/*   Created: 2022/11/09 14:22:11 by rlevilla          #+#    #+#             */
+/*   Updated: 2022/11/09 16:41:19 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+//#include "libft.h"
+#include <unistd.h>
 #include <stdlib.h>
-#include <string.h>
-#include "libft.h"
 
 size_t	ft_strlen(char const *s)
 {
@@ -21,59 +21,59 @@ size_t	ft_strlen(char const *s)
 
 	i = 0;
 	while (s[i] != '\0')
+	{
 		i++;
+	}
 	return (i);
 }
 
-size_t	ft_countc(char const *str, char c)
+size_t	ft_countc(char const *s, char c)
 {
 	size_t	i;
 	size_t	k;
 
 	i = 0;
 	k = 0;
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 	{
-		if (str[i] != c && str[i + 1] == c)
-		{
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 			k++;
-		}
 		i++;
 	}
 	return (k);
 }
 
-size_t	ft_slen(char const *s, char c)
+size_t	ft_strsize(char const *s, char c)
 {
 	size_t	i;
-	size_t	count;
+	size_t	count_size;
 
 	i = 0;
-	count = 0;
+	count_size = 0;
 	while (s[i] != c && s[i] != '\0')
 	{
-		count++;
+		count_size++;
 		i++;
 	}
-	return (count);
+	return (count_size);
 }
 
-char	*ft_strcpy_malloc(char const *s, char c)
+char	*ft_strdup(char const *s, char c)
 {
+	char	*buffer;
 	size_t	i;
-	char	*str;
 
 	i = 0;
-	str = (char *)malloc(sizeof(char) * (ft_slen(s, c) + 1));
-	if (str == NULL)
+	buffer = (char *)malloc(sizeof(char) * (ft_strsize(s, c) + 1));
+	if (!buffer)
 		return (NULL);
-	while (s[i] != c && s[i] != '\0')
+	while (s[i] != '\0' && s[i] != c)
 	{
-		str[i] = s[i];
+		buffer[i] = s[i];
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	buffer[i] = '\0';
+	return (buffer);
 }
 
 char	**ft_split(char const *s, char c)
@@ -81,17 +81,15 @@ char	**ft_split(char const *s, char c)
 	char	**ptrptrs;
 	size_t	j;
 
+	ptrptrs = (char **)malloc(sizeof(char *) * (ft_countc(s, c) + 1));
 	j = -1;
-	ptrptrs = (char **)malloc(sizeof(char *) * (ft_countc(s, c) + 1));	
-	if (!ptrptrs || !s)
-		return (NULL);
 	while (*s != '\0')
 	{
 		while (*s == c && *s != '\0')
 			++s;
 		if (*s != c && *s != '\0')
 		{
-			ptrptrs[++j] = ft_strcpy_malloc(s, c);
+			ptrptrs[++j] = ft_strdup(s, c);
 			while (*s != c && *s != '\0')
 				++s;
 		}
@@ -99,12 +97,12 @@ char	**ft_split(char const *s, char c)
 	ptrptrs[++j] = NULL;
 	return (ptrptrs);
 }
-
+/*
 int main(void)
 {
 	// test FINAL
 
-	char	str[] = "..Macron..e.st.un.pedo.sataniste..";
+	char	str[] = "..Macron..e.st.un.pedo.sataniste";
 	char	str2[] = "hello!";
 	char	c = '.';
 	char	c1 = ' ';
@@ -114,7 +112,7 @@ int main(void)
 	char	**ptrptrs2;
 
 	ptrptrs = ft_split(str, c);
-	printf("Voici ce que output ft_split normal:\n");
+	printf("Voici ce que output ft_split normal:\n\n");
 	while (ptrptrs[i] != 0)
 	{
 		printf("%s\n", ptrptrs[i]);
@@ -122,7 +120,7 @@ int main(void)
 		i++;
 	}
 	printf("%s\n\n", ptrptrs[i]);
-	printf("Voici ce que output ft_split normal:\n\n");
+	printf("Voici ce que output ft_split BUGGE:\n\n");
 	ptrptrs2 = ft_split(str2, c1);
 	while (ptrptrs2[j] != 0)
 	{
@@ -132,7 +130,7 @@ int main(void)
 	}
 	printf("%s\n", ptrptrs2[j]);
 }
-
+*/
 /*
 int main(void)
 {
@@ -140,7 +138,7 @@ int main(void)
 
 	char	str[] = "hello!";
 	char	str2[] = "..Macron.e.st.pdo.sataniste..";
-	char	str3[] = "..Macron.e.st.pdo.sataniste.";
+	char	str3[] = "..Macron.e.st.pdo.sataniste";
 	char	c = ' ';
 	char	c1 = '.';
 	size_t	k = ft_countc(str, c);
@@ -176,22 +174,60 @@ int main(void)
 {
 	// test ft_slen len pour chaque str
 
-	char	str[] = "hello!";
+	char	str[] = "hello!!!!";
+	char	str2[] = "..Macron.e.st.un.pedo.sataniste..";
+	char	str3[] = "..Macron.e.st.un.pedo.sataniste";
 	char	*s = str;
+	char	*s2 = str2;
+	char	*s3 = str3;
 	char	c = ' ';
+	char	c2 = '.';
+	char	c3 = '.';
 	while (*s != '\0')
 	{
 		if (*s != c)
 		{
-			printf("%zu\n", ft_slen(s, c));
+			printf("%zu\n", ft_strsize(s, c));
 			while (*s != c && *s != '\0')
 			{
 				++s;
 			}
 		}
-		else
+		while (*s == c)
 		{
 			++s;
+		}
+	}
+	printf("||| RETOUR A LA LIGNE |||\n");
+	while (*s2 != '\0')
+	{
+		if (*s2 != c2)
+		{
+			printf("%zu\n", ft_strsize(s2, c2));
+			while (*s2 != c2 && *s2 != '\0')
+			{
+				++s2;
+			}
+		}
+		while (*s2 == c2)
+		{
+			++s2;
+		}
+	}
+	printf("||| RETOUR A LA LIGNE |||\n");
+	while (*s3 != '\0')
+	{
+		if (*s3 != c3)
+		{
+			printf("%zu\n", ft_strsize(s3, c3));
+			while (*s3 != c3 && *s3 != '\0')
+			{
+				++s3;
+			}
+		}
+		while (*s3 == c3)
+		{
+			++s3;
 		}
 	}
 }*/
