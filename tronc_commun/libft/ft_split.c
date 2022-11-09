@@ -6,15 +6,15 @@
 /*   By: rlevilla <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:22:11 by rlevilla          #+#    #+#             */
-/*   Updated: 2022/11/09 16:41:19 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/09 23:25:56 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-//#include "libft.h"
+#include "libft.h"
 #include <unistd.h>
 #include <stdlib.h>
-
+/*
 size_t	ft_strlen(char const *s)
 {
 	size_t	i;
@@ -26,7 +26,7 @@ size_t	ft_strlen(char const *s)
 	}
 	return (i);
 }
-
+*/
 size_t	ft_countc(char const *s, char c)
 {
 	size_t	i;
@@ -58,7 +58,7 @@ size_t	ft_strsize(char const *s, char c)
 	return (count_size);
 }
 
-char	*ft_strdup(char const *s, char c)
+char	*ft_strdup_split(char const *s, char c)
 {
 	char	*buffer;
 	size_t	i;
@@ -82,6 +82,8 @@ char	**ft_split(char const *s, char c)
 	size_t	j;
 
 	ptrptrs = (char **)malloc(sizeof(char *) * (ft_countc(s, c) + 1));
+	if (!ptrptrs)
+		return (NULL);
 	j = -1;
 	while (*s != '\0')
 	{
@@ -89,7 +91,7 @@ char	**ft_split(char const *s, char c)
 			++s;
 		if (*s != c && *s != '\0')
 		{
-			ptrptrs[++j] = ft_strdup(s, c);
+			ptrptrs[++j] = ft_strdup_split(s, c);
 			while (*s != c && *s != '\0')
 				++s;
 		}

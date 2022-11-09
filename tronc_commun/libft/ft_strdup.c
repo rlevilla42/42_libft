@@ -6,14 +6,15 @@
 /*   By: raphaell <raphaellrlevilla@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 00:13:18 by raphaell          #+#    #+#             */
-/*   Updated: 2022/11/08 03:10:16 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/09 21:59:00 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "libft.h"
+/*
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
@@ -23,7 +24,7 @@ size_t	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
-
+*/
 char	*ft_strdup(const char *s)
 {
 	int		i;
