@@ -6,7 +6,7 @@
 #    By: rlevilla <rlevilla@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/16 02:35:28 by rlevilla          #+#    #+#              #
-#    Updated: 2022/11/06 17:14:15 by rlevilla         ###   ########.fr        #
+#    Updated: 2022/11/09 21:46:56 by rlevilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,13 +32,11 @@ OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 
 NAME	= libft.a
 
-bonus:	${OBJS_BONUS}
-	ar rcs ${NAME} ${OBJS_BONUS}
-
-
 ${NAME}: ${OBJS}
 		ar rcs ${NAME} ${OBJS}
 
+bonus:	${OBJS_BONUS}
+	ar rcs ${NAME} ${OBJS_BONUS}
 
 all:	${NAME}
 
