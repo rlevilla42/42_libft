@@ -6,7 +6,7 @@
 /*   By: raphaell <raphaellrlevilla@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 00:13:18 by raphaell          #+#    #+#             */
-/*   Updated: 2022/11/07 01:07:33 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:49:43 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strrchr(const char *string, int c)
 	}
 	if (flag == 1)
 		return (&str[j]);
-	else if (c == 0)
+	else if (ch == '\0')
 		return (&str[i]);
 	return (NULL);
 }
