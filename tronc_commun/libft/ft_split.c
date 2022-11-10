@@ -6,7 +6,7 @@
 /*   By: rlevilla <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:22:11 by rlevilla          #+#    #+#             */
-/*   Updated: 2022/11/09 23:25:56 by rlevilla         ###   ########.fr       */
+/*   Updated: 2022/11/11 00:45:19 by rlevilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,22 @@ size_t	ft_strlen(char const *s)
 	return (i);
 }
 */
+
+char	**ft_free_array(char **ptrptrs)
+{
+	size_t	j;
+
+	j = 0;
+	while (ptrptrs[j] != NULL)
+	{
+		free(ptrptrs[j]);
+		j++;
+	}
+	free(ptrptrs[j]);
+	free(ptrptrs);
+	return (NULL);
+}
+
 size_t	ft_countc(char const *s, char c)
 {
 	size_t	i;
@@ -92,6 +108,8 @@ char	**ft_split(char const *s, char c)
 		if (*s != c && *s != '\0')
 		{
 			ptrptrs[++j] = ft_strdup_split(s, c);
+			if (ptrptrs[j] == NULL)
+				return (ft_free_array(ptrptrs));
 			while (*s != c && *s != '\0')
 				++s;
 		}
